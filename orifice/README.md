@@ -16,6 +16,6 @@ The Q-criterion with isocontours of $Q=4000$ is visualised in the figure below.
 
 
 The streamlines of through the orifice is also visualised. Here it is obvious that the inlet velocity profile is a unreal plugflow.
-![](visuals/streamlines.png)
+![Click here if image doesn't load.](visuals/streamlines.png)
 
 All visuals are found in the [visuals directory](https://github.com/kasperbilde/Stuff/tree/main/orifice/visuals/).
