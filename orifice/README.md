@@ -12,7 +12,7 @@ If the video doesn't play, [click here](https://github.com/kasperbilde/Stuff/raw
 
 ## Some turbulence plots
 The Q-criterion with isocontours of $Q=4000$ is visualised in the figure below.
-![<a href="https://raw.githubusercontent.com/kasperbilde/Stuff/main/orifice/visuals/Qcriterion_4000.png" target="_blank">Click here</a> if image doesn't load.](visuals/Qcriterion_4000.png)
+![<a href="https://raw.githubusercontent.com/kasperbilde/Stuff/main/orifice/visuals/Qcriterion_4000.png" target="_blank">Click here</a>](visuals/Qcriterion_4000.png)
 
 
 The streamlines of through the orifice is also visualised. Here it is obvious that the inlet velocity profile is a unreal plugflow.
