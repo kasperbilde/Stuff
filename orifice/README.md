@@ -6,7 +6,7 @@ The flow upstream is a simple plug flow with a Reynolds number of $Re=6000$.
 
 ![](visuals/orifice.gif)
 
-Keep in mind that this is an example where the mesh density is not independent and results are only used for visuals.
+**Disclaimer**: Keep in mind that this is an example where the results are not independent of the mesh density and are <ins>only</ins> to be used for visuals.
 
 If the video doesn't play, [click here](https://github.com/kasperbilde/Stuff/raw/main/orifice/visuals/orifice.mp4) to download the video.
 
