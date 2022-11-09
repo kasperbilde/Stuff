@@ -1,0 +1,54 @@
+Nusselt
+{
+    libs            (utilityFunctionObjects);
+    type            coded;
+    name            NuCoded;
+    writeControl    timeStep;
+    writeInterval   1;
+
+    codeWrite
+    #{
+        // Characteristic length (m)
+        const scalar Lc = 0.02;
+
+        // Setup
+        wallName = "walls";
+        inletName = "inlet";
+        word timeName(mesh().time().timeName());
+        fileName outputFile (timeName/"Nu");
+        OFstream os(outputFile);
+
+        // IDs of patches.
+        label wallsID = mesh().boundaryMesh().findPatchID(wallName);
+        label inletID = mesh().boundaryMesh().findPatchID(inletName);
+
+        // Load fields.
+        const volScalarField T = mesh().lookupObject<volScalarField>("T");
+        const volVectorField U = mesh().lookupObject<volVectorField>("U");
+
+        // Calculate average temperature of the inlet.
+        const scalar bulkNum = gSum(T.boundaryField()[inletID]*U.boundaryField()[inletID].component(0)*mesh().magSf().boundaryField()[inletID]);
+        const scalar bulkDen = gSum(U.boundaryField()[inletID].component(0)*mesh().magSf().boundaryField()[inletID]);
+        const scalar TBulk = bulkNum/bulkDen;
+
+        // Calculate average temperature of the wall
+        const scalar TWall = gSum(T.boundaryField()[wallsID]*mesh().magSf().boundaryField()[wallsID])/gSum(mesh().magSf().boundaryField()[wallsID]);
+
+        // Calculate temperature gradient
+        const scalar dTdn = gSum(T.boundaryField()[wallsID].snGrad()*mesh().magSf().boundaryField()[wallsID])/gSum(mesh().magSf().boundaryField()[wallsID]);
+
+        // Calculate Nusselt number
+        const scalar Nu = dTdn*Lc/(TWall-TBulk);
+
+        // Print to terminal
+        Info << "=== Heat transfer evaluation ===========" << endl;
+        Info << "TWall = " << TWall << endl;
+        Info << "TBulk = " << TBulk << endl;
+        Info << "dTdn = " << dTdn << endl;
+        Info << "Nu = " << Nu << endl << endl;
+
+        // Print to file
+        os << Nu << endl;
+
+    #};
+}
