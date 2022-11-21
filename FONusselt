@@ -11,11 +11,11 @@ Nusselt
         // Characteristic length (m)
         const scalar Lc = 0.02;
 
-        // Setup
+        // Setup. Directory "postProcessing/Nu" should be created in Allrun file.
         wallName = "walls";
         inletName = "inlet";
         word timeName(mesh().time().timeName());
-        fileName outputFile (timeName/"Nu");
+        fileName outputFile ("postProcessing/Nu"/timeName);
         OFstream os(outputFile);
 
         // IDs of patches.
